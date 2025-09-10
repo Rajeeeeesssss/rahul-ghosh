@@ -1,12 +1,11 @@
-
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Input } from "@/components/ui/input"
 import { Heart, Menu, Search, ShoppingCart, User, LogOut, ShieldCheck } from "lucide-react"
-import { Logo } from "./logo"
 import { useCart } from "@/contexts/cart-context"
 import { CartSheet } from "./cart-sheet"
 import { useWishlist } from "@/contexts/wishlist-context"
@@ -49,6 +48,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
+        
         {/* Mobile Nav Trigger */}
         <Sheet>
           <SheetTrigger asChild>
@@ -60,46 +60,57 @@ export function SiteHeader() {
           <SheetContent side="left" className="sm:max-w-xs">
             <nav className="grid gap-6 text-lg font-medium">
               <div className="flex items-center gap-2 mb-4">
-                 <Logo />
+                {/* Mobile Logo */}
+                <Link href="/">
+                  <Image
+                    src="/six.ico"
+                    alt="Product Key Bazar"
+                    width={40}
+                    height={40}
+                  />
+                </Link>
               </div>
-             {navLinks.map(link => (
-                 <Link 
-                 key={`${link.name}-${link.href}`} 
-                   href={link.href} 
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"  >
+              {navLinks.map(link => (
+                <Link 
+                  key={`${link.name}-${link.href}`} 
+                  href={link.href} 
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"  
+                >
                   {link.name}
-                 </Link>
-                   ))}
-
-               <div className="mt-auto space-y-2">
-                 {!user && (
-                   <>
-                    <Button asChild className="w-full justify-start">
-                       <Link href="/login"><User className="mr-2 h-4 w-4" />Login</Link>
-                    </Button>
-                   </>
-                 )}
-               </div>
+                </Link>
+              ))}
+              <div className="mt-auto space-y-2">
+                {!user && (
+                  <Button asChild className="w-full justify-start">
+                    <Link href="/login"><User className="mr-2 h-4 w-4" />Login</Link>
+                  </Button>
+                )}
+              </div>
             </nav>
           </SheetContent>
         </Sheet>
-        
+
         {/* Desktop Logo */}
         <div className="mr-6 hidden md:flex">
           <Link href="/">
-            <Logo />
+            <Image
+              src="/six.ico"
+              alt="Product Key Bazar"
+              width={40}
+              height={40}
+            />
           </Link>
         </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-            {navLinks.slice(0, 2).map(link => (
-              <Link key={link.name} href={link.href} className="transition-colors hover:text-foreground/80 text-foreground/60">
-                {link.name}
-              </Link>
-            ))}
+          {navLinks.slice(0, 2).map(link => (
+            <Link key={link.name} href={link.href} className="transition-colors hover:text-foreground/80 text-foreground/60">
+              {link.name}
+            </Link>
+          ))}
         </nav>
-        
+
         <div className="flex flex-1 items-center justify-end gap-4">
           <div className="w-full flex-1 md:w-auto md:flex-none">
             <form onSubmit={handleSearchSubmit}>
@@ -115,24 +126,35 @@ export function SiteHeader() {
               </div>
             </form>
           </div>
+
+          {/* Wishlist & Cart */}
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" asChild>
               <Link href="/wishlist">
                 <Heart className="h-5 w-5" />
-                {wishlistCount > 0 && <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-accent rounded-full">{wishlistCount}</span>}
+                {wishlistCount > 0 && (
+                  <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-accent rounded-full">
+                    {wishlistCount}
+                  </span>
+                )}
                 <span className="sr-only">Wishlist</span>
               </Link>
             </Button>
             <CartSheet>
               <Button variant="ghost" size="icon" className="relative">
                 <ShoppingCart className="h-5 w-5" />
-                {cartCount > 0 && <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-accent rounded-full">{cartCount}</span>}
+                {cartCount > 0 && (
+                  <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-accent rounded-full">
+                    {cartCount}
+                  </span>
+                )}
                 <span className="sr-only">Cart</span>
               </Button>
             </CartSheet>
-            
+
+            {/* User Dropdown */}
             {user ? (
-               <DropdownMenu>
+              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                     <Avatar className="h-8 w-8">
@@ -145,14 +167,12 @@ export function SiteHeader() {
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                       <p className="text-sm font-medium leading-none">{user.displayName}</p>
-                      <p className="text-xs leading-none text-muted-foreground">
-                        {user.email}
-                      </p>
+                      <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                     <Link href="/profile"><User className="mr-2 h-4 w-4" />Profile</Link>
+                    <Link href="/profile"><User className="mr-2 h-4 w-4" />Profile</Link>
                   </DropdownMenuItem>
                   {user.email === 'productkeyybazar@gmail.com' && (
                     <DropdownMenuItem asChild>
@@ -167,11 +187,11 @@ export function SiteHeader() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-                <div className="hidden md:flex items-center gap-2">
-                    <Button asChild size="sm">
-                       <Link href="/login"><User className="mr-2 h-4 w-4" />Login</Link>
-                    </Button>
-                </div>
+              <div className="hidden md:flex items-center gap-2">
+                <Button asChild size="sm">
+                  <Link href="/login"><User className="mr-2 h-4 w-4" />Login</Link>
+                </Button>
+              </div>
             )}
           </div>
         </div>

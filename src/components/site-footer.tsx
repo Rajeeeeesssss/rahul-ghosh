@@ -1,7 +1,8 @@
+"use client"
 
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import Link from "next/link";
-import { Logo } from "./logo";
+import Image from "next/image";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
@@ -11,7 +12,15 @@ export function SiteFooter() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <Logo />
+            {/* Logo replaced with six.ico */}
+            <Link href="/">
+              <Image
+                src="/six.ico"
+                alt="Product Key Bazar"
+                width={50}
+                height={50}
+              />
+            </Link>
             <p className="text-sm text-muted-foreground">One Site One Solution</p>
             <div className="flex space-x-4">
               <Link href="#" className="text-muted-foreground hover:text-foreground"><Twitter size={20} /></Link>

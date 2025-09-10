@@ -7,7 +7,7 @@ import { Providers } from '@/components/providers';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'eStore',
+  title: 'Product Key Bazar',
   description: 'A modern e-commerce experience built with Next.js and Firebase.',
 };
 

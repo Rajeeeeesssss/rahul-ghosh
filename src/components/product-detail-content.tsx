@@ -84,7 +84,7 @@ export function ProductDetailContent({ product }: { product: Product }) {
             {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
           </span>
         </div>
-        <p className="text-4xl font-extrabold text-primary">${product.price.toFixed(2)}</p>
+        <p className="text-4xl font-extrabold text-primary">₹{product.price.toFixed(2)}</p>
         
         <Separator />
         
