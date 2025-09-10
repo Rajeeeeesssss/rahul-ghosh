@@ -44,7 +44,7 @@ export function CartSheet({ children }: { children: React.ReactNode }) {
                     />
                     <div className="flex-1">
                       <h3 className="font-semibold text-sm">{item.name}</h3>
-                      <p className="text-sm text-muted-foreground">${item.price.toFixed(2)}</p>
+                      <p className="text-sm text-muted-foreground">	₹{item.price.toFixed(2)}</p>
                       <div className="mt-2 flex items-center justify-between">
                         <QuantitySelector
                           quantity={item.quantity}
@@ -76,7 +76,7 @@ export function CartSheet({ children }: { children: React.ReactNode }) {
             <div className="w-full space-y-4">
               <div className="flex justify-between font-semibold">
                 <span>Subtotal</span>
-                <span>${cartTotal.toFixed(2)}</span>
+                <span>	₹{cartTotal.toFixed(2)}</span>
               </div>
               <SheetClose asChild>
                 <Button size="lg" className="w-full bg-gradient-to-r from-primary to-blue-500 text-white" asChild>
