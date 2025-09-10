@@ -21,7 +21,7 @@ export function SiteFooter() {
                 height={50}
               />
             </Link>
-            <p className="text-sm text-muted-foreground">One Site One Solution</p>
+            <p className="text-sm text-muted-foreground">Rahul khanki magi</p>
             <div className="flex space-x-4">
               <Link href="#" className="text-muted-foreground hover:text-foreground"><Twitter size={20} /></Link>
               <Link href="#" className="text-muted-foreground hover:text-foreground"><Facebook size={20} /></Link>
