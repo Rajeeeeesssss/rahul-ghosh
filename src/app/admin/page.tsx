@@ -76,7 +76,7 @@ function AdminDashboard() {
   const [isAddingProduct, setIsAddingProduct] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isUpdatingProduct, setIsUpdatingProduct] = useState(false);
-const [productCategories] = useState<string[]>(['Windows key', 'Adobie key', 'Game keys', 'Other keys']);
+const [productCategories] = useState<string[]>(['Windows key', 'Microsoft key', 'Game keys', 'Other keys']);
   const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
 
 
